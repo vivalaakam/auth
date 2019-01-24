@@ -10,6 +10,10 @@ module.exports = function (app, passport) {
     res.send('hello express server')
   })
 
+  app.get('/terms', (req, res) => {
+    res.send('тут будут условия использования')
+  })
+
   app.get('/auth', (req, res) => {
     res.send('auth page')
   })
