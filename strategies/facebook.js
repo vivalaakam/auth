@@ -27,14 +27,16 @@ module.exports = new FacebookStrategy(opts, async (req, accessToken, refreshToke
   if (profile.emails.length) {
     user = await User.load({ email: profile.emails[0].value })
 
-    user.providers.push({
-      provider: 'facebook',
-      uid: profile.id,
-      secret: accessToken
-    })
+    if(user) {
+      user.providers.push({
+        provider: 'facebook',
+        uid: profile.id,
+        secret: accessToken
+      })
 
-    await user.save()
-    return cb(null, user)
+      await user.save()
+      return cb(null, user)
+    }
   }
 
   user = new User({
