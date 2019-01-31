@@ -37,7 +37,7 @@ exports.login = asyncMiddleware(async (req, res) => {
   await session.save()
 
   const token = jwt.sign({ uid: user.id, sid: session.id }, config.secret_jwt, {})
-  return res.status(200).json({
+  return res.render('jwt', {
     user: user.toJSON(),
     token
   })
@@ -52,7 +52,7 @@ exports.jwt = asyncMiddleware(async (req, res) => {
   await session.save()
 
   const token = jwt.sign({ uid: user.id, sid: session.id }, config.secret_jwt, {})
-  return res.status(200).json({
+  return res.render('jwt', {
     user: user.toJSON(),
     token
   })
