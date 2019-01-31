@@ -15,13 +15,15 @@ module.exports = function (app, passport) {
   })
 
   app.get('/auth', (req, res) => {
-    res.send('auth page')
+    res.render('auth', {})
   })
 
-  app.post('/login', auth.login)
+  app.post('/auth', auth.login)
   app.get('/protected', passport.authenticate('jwt', { session: false }), auth.protected)
 
   app.get('/auth/facebook', passport.authenticate('facebook'))
-
   app.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/auth' }), auth.jwt)
+
+  app.get('/auth/google', passport.authenticate('google', { scope: ['profile'] }))
+  app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/auth' }), auth.jwt)
 }

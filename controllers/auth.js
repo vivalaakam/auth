@@ -27,7 +27,7 @@ exports.login = asyncMiddleware(async (req, res) => {
   }
 
   if (!user.checkPassword(req.body.password)) {
-    return res.status(401).json({ message: 'Auth Failed' })
+    return res.render('auth', { message: 'Неверный логин или пароль' })
   }
 
   const session = new Session({

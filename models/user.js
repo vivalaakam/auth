@@ -5,8 +5,10 @@
  */
 const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
+const uuid4 = require('uuid/v4')
 
 const userSchema = new mongoose.Schema({
+  _id: { type: String, default: uuid4 },
   name: {
     type: String,
     required: [true, 'usernameRequired']

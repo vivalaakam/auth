@@ -26,6 +26,8 @@ app.use(require('express-session')({
   resave: true,
   saveUninitialized: true
 }))
+app.use(express.static('public'));
+app.set('view engine', 'pug')
 
 require('./passport')(passport)
 require('./routes')(app, passport)

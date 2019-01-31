@@ -1,0 +1,16 @@
+extends layout
+
+block content
+    if message
+        .ui.ignored.error.message= message
+
+    form(method="post").ui.form
+        .field
+            input(type="email", placeholder="Email", name="email")
+        .field
+            input(type="password", placeholder="Пароль", name="password")
+        input(type="submit", value="Войти").ui.button
+
+    .ui
+        a(href="/auth/facebook").ui.facebook.button Facebook
+        a(href="/auth/google").ui.google.plus.button Google
